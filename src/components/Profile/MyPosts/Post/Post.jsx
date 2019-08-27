@@ -2,8 +2,7 @@ import React from 'react';
 import s from './Post.module.css';
 
 const Post = (props) => {
-	// console.log(props);
-	// debugger; 
+	
 	return (
 		
 		<div className={s.item}>
@@ -11,7 +10,7 @@ const Post = (props) => {
 			{props.message}
 			Post 1
 			<div>
-				<span>Like{props.like}</span>
+				<span>Like{props.likesCount}</span>
 			</div>
 
 			<input />
