@@ -5,12 +5,11 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Message from "../Dialogs/Message/Message";
 
 const Profile = (props) => {
-	
 	return (
 		<div>
 			<ProfileInfo/>
 
-			<MyPosts posts={props.posts} />
+			<MyPosts posts={props.state.posts} />
 
 		</div>
 	)
