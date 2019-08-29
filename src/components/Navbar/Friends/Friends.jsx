@@ -3,7 +3,7 @@ import s from './Friends.module.css';
 
 const Friends = (props) => {
 	
-	let friendsArr = props.state.map((friend, index) => {
+	let friendsArr = props.state.sidebar.friends.map((friend, index) => {
 		return (
 			<div key={index}>
 				<img src={friend.avatar}/>
