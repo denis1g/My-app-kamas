@@ -14,10 +14,10 @@ const Dialogs = (props) => {
 		<Message messages={m.message} id={m.id} key={index}/>
 	)
 	let reff = React.createRef();
+	
 	let click = () => {
-		
 		let test = reff.current.value;
-		alert(test);
+		props.myMessage(test);
 	}
 	
 	return (

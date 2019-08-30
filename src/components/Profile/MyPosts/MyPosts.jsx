@@ -10,20 +10,19 @@ const MyPosts = (props) => {
 		      key={index}
 		/>);
 	
-	let newPostElement = React.createRef()
+	let newPostElement = React.createRef();
 	
 	let addPost = () => {
-		let text = newPostElement.current.value;
 		// вызов ф. в state.js
-		props.addPost(text);
-		newPostElement.current.value = ''; // занулить
-	}
+		props.addPost();
+		// props.updateNewPostText(''); // занулить
+	};
 
 	
 	let onPostChange = () => {
 		let text = newPostElement.current.value;
 		props.updateNewPostText(text);
-	}
+	};
 	
 	return (
 		<div className={s.postsBlock}>

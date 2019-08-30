@@ -7,7 +7,7 @@ import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import './App.css';
-import {addPost} from "./redux/state";
+import {state} from "./redux/state";
 
 
 const App = (props) => {
@@ -23,7 +23,8 @@ const App = (props) => {
 				<div className="app-wrapper-content">
 					<Route exact path='/dialogs'
 					       render={() => <Dialogs
-						       state={props.state.dialogsPage}/>}/>
+						       state={props.state.dialogsPage}
+						       myMessage={props.myMessage}/>}/>
 					<Route path='/profile'
 					       render={() => <Profile
 						       profilePage={props.state.profilePage}
