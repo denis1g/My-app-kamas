@@ -7,7 +7,7 @@ import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import News from "./components/News/News";
 import './App.css';
-import {state} from "./redux/state";
+// import {store._state} from "./redux/state";
 
 
 const App = (props) => {
@@ -24,12 +24,11 @@ const App = (props) => {
 					<Route exact path='/dialogs'
 					       render={() => <Dialogs
 						       state={props.state.dialogsPage}
-						       myMessage={props.myMessage}/>}/>
+						       dispatch={props.dispatch}/>}/>
 					<Route path='/profile'
 					       render={() => <Profile
 						       profilePage={props.state.profilePage}
-						       addPost={props.addPost}
-						       updateNewPostText={props.updateNewPostText}
+						       dispatch={props.dispatch}
 						       
 					       />}/>
 					<Route path='/news' render = {()=><News/>}/>

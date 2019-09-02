@@ -17,7 +17,8 @@ const Dialogs = (props) => {
 	
 	let click = () => {
 		let test = reff.current.value;
-		props.myMessage(test);
+		// props.myMessage(test);
+		props.dispatch({type: 'MY-MESSAGE', test: test});
 	}
 	
 	return (

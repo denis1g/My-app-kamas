@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter} from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
-import {state, addPost, updateNewPostText, myMessage, subscribe} from "./redux/state";
+import store from "./redux/state";
 import './index.css';
 import App from './App';
 
@@ -12,17 +12,17 @@ import App from './App';
 	ReactDOM.render(
 		<BrowserRouter>
 			<App state={state}
-			     addPost={addPost}
-			     updateNewPostText={updateNewPostText}
-			     myMessage={myMessage}	/>
+			     dispatch={store.dispatch.bind(store)}
+			/>
 		</BrowserRouter>,
 		document.getElementById('root'));
 	}
 
 // render 1 раз без изменения
-rerenderEntireTree(state);
+rerenderEntireTree(store.getState()); // убираем (_)
 
-subscribe(rerenderEntireTree);
+store.subscribe(rerenderEntireTree);
 
 
+// ---------------
 serviceWorker.unregister();
