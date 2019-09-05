@@ -75,6 +75,7 @@ let store = {
 			]
 		},
 	},
+	
 	_callSubscriber() {
 		console.log('State chnged');
 	},
