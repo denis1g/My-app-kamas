@@ -76,12 +76,12 @@ let store = {
 		},
 	},
 	
-	_callSubscriber() {
-		console.log('State chnged');
-	},
-	
 	getState() {
 		return this._state;
+	},
+	
+	_callSubscriber() {
+		console.log('State chnged');
 	},
 	
 	subscribe(observer) {
