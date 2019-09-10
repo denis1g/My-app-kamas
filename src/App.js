@@ -7,6 +7,7 @@ import Profile from './components/Profile/Profile';
 import News from "./components/News/News";
 import './App.css';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App = (props) => {
@@ -26,6 +27,9 @@ const App = (props) => {
 					       
 					<Route path='/profile'
 					       render={() => <Profile />}/>
+					       
+					<Route path='/users'
+						       render={() => <UsersContainer/> }/>
 					       
 					<Route path='/news' render = {()=><News/>}/>
 				</div>
