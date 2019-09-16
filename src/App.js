@@ -3,11 +3,11 @@ import {Route} from "react-router-dom";
 
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
 import News from "./components/News/News";
 import './App.css';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -26,7 +26,7 @@ const App = (props) => {
 					       render={() => <DialogsContainer />}/>
 					       
 					<Route path='/profile'
-					       render={() => <Profile />}/>
+					       render={() => <ProfileContainer />}/>
 					       
 					<Route path='/users'
 						       render={() => <UsersContainer/> }/>
