@@ -67,6 +67,7 @@ let mapStateToProps = (state) => {
 }
 
 // let mapDispatchTooProps = (dispatch) => {
+
 // 	return {
 // 		follow: (userId) => {
 // 			dispatch(followAC(userId));

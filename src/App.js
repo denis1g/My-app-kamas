@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from "react-router-dom";
 
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navbar from './components/Navbar/Navbar';
 import News from "./components/News/News";
 import './App.css';
@@ -16,8 +16,7 @@ const App = (props) => {
 		
 			<div className="app-wrapper">
 				
-				
-				<Header/>
+				<HeaderContainer/>
 				<Navbar state={props.state}/>
 				
 				<div className="app-wrapper-content">
@@ -25,7 +24,7 @@ const App = (props) => {
 					<Route exact path='/dialogs'
 					       render={() => <DialogsContainer />}/>
 					       
-					<Route path='/profile'
+					<Route  path='/profile/:userId?'
 					       render={() => <ProfileContainer />}/>
 					       
 					<Route path='/users'
