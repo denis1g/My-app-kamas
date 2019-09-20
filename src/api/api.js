@@ -15,12 +15,22 @@ export const usersAPI = {
 				return response.data;
 			});
 	},
-	getUsers2(currentPage = 1, pageSize = 10) {
-		return instance.get(`follow`,)
-			.then(response => {
-				return response.data;
-			});
+	
+	follow(userId){
+		return instance.post(`unfollow/${userId}`);
+		
 	},
+	
+	unfollow(userId){
+		return instance.delete(`follow/${userId}`);
+	},
+	
+	// getUsers2(currentPage = 1, pageSize = 10) {
+	// 	return instance.get(`follow`,)
+	// 		.then(response => {
+	// 			return response.data;
+	// 		});
+	// },
 	
 	getHeader() {
 		return instance.get(`auth/me`,)
