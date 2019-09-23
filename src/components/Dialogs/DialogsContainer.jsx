@@ -6,10 +6,11 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
 	return {
-		dialogsPage: state.dialogsPage
+		dialogsPage: state.dialogsPage,
+		isAuth: state.auth.isAuth
 	}
 }
-let mapDispatchTooProps = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
 	return {
 		onSendMessage: () => {
 			dispatch(sendMessageCreator());
@@ -21,7 +22,7 @@ let mapDispatchTooProps = (dispatch) => {
 	}
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchTooProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
 
