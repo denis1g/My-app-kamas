@@ -13,7 +13,7 @@ let initialState = {
 	pageSize: 5,
 	totalUsersCount: 0,
 	currentPage: 2,
-	isFecthing: true,
+	isFetching: true,
 	followingInProgress: []
 };
 
@@ -73,21 +73,22 @@ export const unfollowSuccess = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
-export const toggleIsFecthing = (isFecthing) => ({type: TOGGLE_IS_FETCHING, isFecthing});
-export const toggleFollowingProgress = (isFecthing, userId) => ({
+export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFecthing: isFetching});
+export const toggleFollowingProgress = (isFetching, userId) => ({
 	type: TOGGLE_IS_FOLLOWING_PROGRESS,
-	isFecthing,
+	isFetching: isFetching,
 	userId
 });
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
 	
 	return (dispatch) => {
 		
-		dispatch(toggleIsFecthing(true));
+		dispatch(toggleIsFetching(true));
+		dispatch(setCurrentPage(page));
 		
-		usersAPI.getUsers(currentPage, pageSize).then(data => {
-			dispatch(toggleIsFecthing(false));
+		usersAPI.getUsers(page, pageSize).then(data => {
+			dispatch(toggleIsFetching(false));
 			dispatch(setUsers(data.items));
 			dispatch(setTotalUsersCount(data.totalCount));
 		});
