@@ -1,17 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {follow, requestUsers, setCurrentPage, toggleFollowingProgress, unfollow}
-	from '../../redux/users-reducer';
+import {follow, requestUsers, setCurrentPage, toggleFollowingProgress, unfollow} from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
 	getCurrentPage,
 	getFollowingInProgress,
-	getIsFecthing,
+	getIsFetching,
 	getPageSize,
-	getTotalUsersCount, getUsers
+	getTotalUsersCount,
+	getUsers
 } from "../../redux/users-selectors";
 
 class UsersContainer extends React.Component {
@@ -27,6 +26,8 @@ class UsersContainer extends React.Component {
 	};
 	
 	render() {
+		
+		console.log('USERS');
 		
 		return <>
 			{this.props.isFecthing ?
@@ -61,12 +62,15 @@ class UsersContainer extends React.Component {
 // };
 
 let mapStateToProps = (state) => {
+	
+	console.log('mapStateToProps USERS');
+	
 	return {
 		users: getUsers(state),
 		totalUsersCount: getTotalUsersCount(state),
 		pageSize: getPageSize(state),
 		currentPage: getCurrentPage(state),
-		isFecthing: getIsFecthing(state),
+		isFecthing: getIsFetching(state),
 		followingInProgress: getFollowingInProgress(state)
 	}
 };

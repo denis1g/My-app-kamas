@@ -14,11 +14,14 @@ let initialState = {
 	totalUsersCount: 0,
 	currentPage: 2,
 	isFetching: true,
-	followingInProgress: []
+	followingInProgress: [],
+	fake: 10
 };
 
 const usersReducer = (state = initialState, action) => {
 	switch (action.type) {
+		
+		case 'FAKE': return {...state, fake: state.fake + 1};
 		
 		case FOLLOW :
 			return {
@@ -60,12 +63,12 @@ const usersReducer = (state = initialState, action) => {
 				followingInProgress: action.isFetching
 					? [...state.followingInProgress, action.userId]
 					: state.followingInProgress.filter(id =>  id != action.userId)
-			}
+			};
 		
 		default:
 			return state;
 	}
-}
+};
 
 
 export const followSuccess = (userId) => ({type: FOLLOW, userId});
