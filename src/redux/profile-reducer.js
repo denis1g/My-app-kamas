@@ -3,11 +3,14 @@ import {profileAPI, usersAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
+const DELETE_POST = 'DELETE_POST';
 
 let initialState = {
 	posts: [
 		{id: 1, message: 'Hi, how are you', likesCount: 12},
-		{id: 2, message: 'It`s my first post', likesCount: 11}
+		{id: 2, message: 'It`s my first post', likesCount: 11},
+		{id: 3, message: 'la-la', likesCount: 11},
+		{id: 4, message: 'da-da', likesCount: 11},
 	],
 	profile: null,
 	status: ''
@@ -39,6 +42,11 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				status: action.status
 			};
+		case DELETE_POST :
+			return {
+				...state,
+				post: state.posts.filter(p => p.id != action.postId)
+			};
 		
 		default:
 			return state;
@@ -48,33 +56,27 @@ const profileReducer = (state = initialState, action) => {
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText});
 export const setStatus = (status) => ({type: SET_STATUS, status});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 
 // thunk creater
-export const getUserProfile = (userId) => (dispatch) => {
+export const getUserProfile = (userId) => async (dispatch) => {
 	
-	usersAPI.getProfile(userId)
-		.then(response => {
-			dispatch(setUserProfile(response.data));
-		});
+	const response = await usersAPI.getProfile(userId);
+	dispatch(setUserProfile(response.data));
 };
 
-export const getStatus = (userId) => (dispatch) => {
+export const getStatus = (userId) => async (dispatch) => {
 	
-	profileAPI.getStatus(userId)
-		.then(response => {
-			// debugger
-			dispatch(setStatus(response.data));
-		});
+	const response = await profileAPI.getStatus(userId);
+	dispatch(setStatus(response.data));
 };
 
-export const updateStatus = (status) => (dispatch) => {
+export const updateStatus = (status) => async (dispatch) => {
 	
-	profileAPI.updateStatus(status)
-		.then(response => {
-			if (response.data.resultCode === 0) {
-				dispatch(setStatus(status));
-			}
-		});
+	const response = await profileAPI.updateStatus(status);
+	if (response.data.resultCode === 0) {
+		dispatch(setStatus(status));
+	}
 };
 
 

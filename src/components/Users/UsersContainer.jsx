@@ -16,18 +16,17 @@ import {
 class UsersContainer extends React.Component {
 	
 	componentDidMount() {
+		const {currentPage, pageSize} = this.props;
 		
-		this.props.getUsers(this.props.currentPage, this.props.pageSize);
+		this.props.getUsers(currentPage, pageSize);
 	}
 	
 	onPageChanged = (pageNumber) => {
-		
-		this.props.getUsers(pageNumber, this.props.pageSize);
+		const {pageSize} = this.props;
+		this.props.getUsers(pageNumber, pageSize);
 	};
 	
 	render() {
-		
-		console.log('USERS');
 		
 		return <>
 			{this.props.isFecthing ?
@@ -41,29 +40,14 @@ class UsersContainer extends React.Component {
 				users={this.props.users}
 				follow={this.props.follow}
 				unfollow={this.props.unfollow}
-				// toggleFollowingProgress={this.props.toggleFollowingProgress}
 				followingInProgress={this.props.followingInProgress}
 			/>
 		</>
 	}
 }
 
-// mapStateTo -----------------
-
-// let mapStateToProps = (state) => {
-// 	return {
-// 		totalUsersCount: state.usersPage.totalUsersCount,
-// 		pageSize: state.usersPage.pageSize,
-// 		currentPage: state.usersPage.currentPage,
-// 		users: state.usersPage.users,
-// 		isFecthing: state.usersPage.isFecthing,
-// 		followingInProgress: state.usersPage.followingInProgress
-// 	}
-// };
 
 let mapStateToProps = (state) => {
-	
-	console.log('mapStateToProps USERS');
 	
 	return {
 		users: getUsers(state),
