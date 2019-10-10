@@ -5,20 +5,13 @@ import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormControls";
 
-// window.props = [];
-
-
 const MyPosts = React.memo( props => {
+
 	
-	console.log('RENDER YO');
-	
-	// window.props.push(this.props);
-	// console.log(this.props);
-	
-	let postsElements = props.posts.map((p, index) =>
-		<Post message={p.message}
+	let postsElements = [...props.posts]
+		.map(p =>
+		<Post key={p.id} message={p.message}
 		      likesCount={p.likesCount}
-		      key={index}
 		/>);
 	
 	let newPostElement = React.createRef();
