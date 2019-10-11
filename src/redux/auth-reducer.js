@@ -1,6 +1,7 @@
 import {authAPI, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
+// samurai-network/auth/
 const SET_USER_DATA = 'SET_USER_DATA';
 const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
@@ -57,7 +58,7 @@ export const login = (email, password, rememberMe, captcha) => async (dispatch) 
 		dispatch(setAuthUserData());
 		
 	} else {
-		if(response.data.resultCode === 10){
+		if(response.data.resultCode === 1){
 			dispatch(getCaptchaUrl());
 		}
 		let message = response.data.messages.length > 0 ?

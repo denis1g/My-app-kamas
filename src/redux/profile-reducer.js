@@ -49,10 +49,10 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				post: state.posts.filter(p => p.id != action.postId)
 			};
-			
+		
 		case SAVE_PHOTO_SUCCESS :
 			return {
-				...state, porfile: { ...state.profile, photos: action.photos}
+				...state, porfile: {...state.profile, photos: action.photos}
 			};
 		
 		default:
@@ -81,9 +81,13 @@ export const getStatus = (userId) => async (dispatch) => {
 
 export const updateStatus = (status) => async (dispatch) => {
 	
-	const response = await profileAPI.updateStatus(status);
-	if (response.data.resultCode === 0) {
-		dispatch(setStatus(status));
+	try {
+		const response = await profileAPI.updateStatus(status);
+		if (response.data.resultCode === 0) {
+			dispatch(setStatus(status));
+		}
+	} catch (error) {
+		// alert('ty-ty')
 	}
 };
 
@@ -99,9 +103,10 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
 	const userId = getState().auth.userId;
 	
 	const response = await profileAPI.saveProfile(profile);
+	
 	if (response.data.resultCode === 0) {
 		dispatch(getUserProfile(userId));
-	}else{
+	} else {
 		dispatch(stopSubmit('edit-profile',
 			{'contacts': {'facebook': response.data.messages[0]}}));
 		return Promise.reject(response.data.messages[0]);
